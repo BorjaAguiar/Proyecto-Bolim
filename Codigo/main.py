@@ -20,6 +20,7 @@ def main():
 	reloj.set_fps_limit(fps)
 	quit = False
 	full_screen = False
+	music = True
 	viruses = pygame.image.load('..\Arte\Grafico\Icon\icono.png')
 	power = open('..\Data\power.txt', 'r')
 	pygame.mixer.music.load('..\Arte\Audio\Feelings-8-bit.wav')
@@ -34,15 +35,33 @@ def main():
 				quit = True
 
 			if evento.type == pygame.KEYDOWN:
-				if evento.key == pygame.K_ESCAPE:
-						
-						full_screen = not full_screen
+				if evento.key == pygame.K_ESCAPE:	
+					full_screen = not full_screen
 
-						if full_screen:
-							pygame.display.set_mode((size), pygame.FULLSCREEN)
+					if full_screen:
+						pygame.display.set_mode((size), pygame.FULLSCREEN)
 
-						else:
-							pygame.display.set_mode((size), 0)
+					else:
+						pygame.display.set_mode((size), 0)
+
+				if evento.key == pygame.K_p:
+					if music == True:
+						pygame.mixer.music.pause()
+						music = False
+					else:
+						pygame.mixer.music.unpause()
+						music = True
+
+				if evento.key == pygame.K_KP_PLUS:
+					volume = pygame.mixer.music.get_volume()
+					pygame.mixer.music.set_volume(volume + 0.1)
+					#print(volume)
+
+				if evento.key == pygame.K_KP_MINUS:
+					volume = pygame.mixer.music.get_volume()
+					pygame.mixer.music.set_volume(volume - 0.1)
+					#print(volume)
+
 
 		screen.fill(White)
 		screen.blit(viruses, (390, 110))

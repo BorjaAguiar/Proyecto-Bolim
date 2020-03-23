@@ -1,6 +1,7 @@
 import sys
 import pygame
 import pyglet.clock
+import player
 
 pygame.init()
 
@@ -10,19 +11,21 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption('Bolim')
 pygame.display.set_icon(icon)
 
-fps = 60
+#fps = 0
 Black = (0, 0, 0)
 White = (255, 255, 255)
 
 
 def main():
-	reloj = pyglet.clock.Clock()
-	reloj.set_fps_limit(fps)
+	#reloj = pyglet.clock.Clock()
+	#reloj.set_fps_limit(fps)
+	clock = pygame.time.Clock()
 	quit = False
 	full_screen = False
 	music = True
 	viruses = pygame.image.load('..\Arte\Grafico\Icon\icono.png')
 	power = open('..\Data\power.txt', 'r')
+	P1 = player.P1((640, 360))
 	pygame.mixer.music.load('..\Arte\Audio\Feelings-8-bit.wav')
 	pygame.mixer.music.play(100000)
 	pygame.mixer.music.set_volume(0.5)
@@ -30,6 +33,7 @@ def main():
 
 	while quit != True:
 
+		#Funciones de la ventana
 		for evento in pygame.event.get():
 			if evento.type == pygame.QUIT:
 				quit = True
@@ -62,13 +66,16 @@ def main():
 					pygame.mixer.music.set_volume(volume - 0.1)
 					#print(volume)
 
-
+		P1.handle_event(evento)
 		screen.fill(White)
-		screen.blit(viruses, (390, 110))
+		screen.blit(P1.image, P1.rect)
+		#screen.blit(viruses, (390, 110))
 
 
 
 
 		pygame.display.update()
+		clock.tick(20)
+		#reloj.set_fps_limit(fps)
 main()
 pygame.quit()

@@ -25,7 +25,7 @@ def main():
 	music = True
 	viruses = pygame.image.load('..\Arte\Grafico\Icon\icono.png')
 	power = open('..\Data\power.txt', 'r')
-	P1 = player.P1((640, 360))
+	P1 = player.P1((625, 315))
 	pygame.mixer.music.load('..\Arte\Audio\Feelings-8-bit.wav')
 	pygame.mixer.music.play(100000)
 	pygame.mixer.music.set_volume(0.5)

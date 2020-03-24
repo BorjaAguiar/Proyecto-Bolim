@@ -3,7 +3,7 @@ import pygame
 class P1(pygame.sprite.Sprite):
     def __init__(self, position):
         self.sheet = pygame.image.load('..\Arte\Grafico\Sprites\p1walk.png')
-        self.sheet.set_clip(pygame.Rect(0, 0, 44, 57))
+        self.sheet.set_clip(pygame.Rect(7, 123, 30, 57))
         self.image = self.sheet.subsurface(self.sheet.get_clip())
         self.rect = self.image.get_rect()
         self.rect.topleft = position
@@ -29,16 +29,16 @@ class P1(pygame.sprite.Sprite):
     def update(self, direction):
         if direction == 'left':
             self.clip(self.left_states)
-            self.rect.x -= 10
+            self.rect.x -= 0
         if direction == 'right':
             self.clip(self.right_states)
-            self.rect.x += 10
+            self.rect.x += 0
         if direction == 'up':
             self.clip(self.up_states)
-            self.rect.y -= 10
+            self.rect.y -= 0
         if direction == 'down':
             self.clip(self.down_states)
-            self.rect.y += 10
+            self.rect.y += 0
 
         if direction == 'stand_left':
             self.clip(self.left_states[0])
@@ -66,7 +66,7 @@ class P1(pygame.sprite.Sprite):
             if event.key == pygame.K_s:
                 self.update('down')
 
-        elif event.type == pygame.KEYUP:
+        if event.type == pygame.KEYUP:
 
             if event.key == pygame.K_a:
                 self.update('stand_left')
